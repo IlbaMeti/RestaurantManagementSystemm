@@ -43,6 +43,8 @@ namespace RestaurantManagementSystem {
 	private: System::Windows::Forms::TextBox^ tbPassword;
 	private: System::Windows::Forms::Button^ btnOK;
 	private: System::Windows::Forms::Button^ btnCancel;
+	private: System::Windows::Forms::LinkLabel^ llRegister;
+
 	protected:
 
 	private:
@@ -65,6 +67,7 @@ namespace RestaurantManagementSystem {
 			this->tbPassword = (gcnew System::Windows::Forms::TextBox());
 			this->btnOK = (gcnew System::Windows::Forms::Button());
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
+			this->llRegister = (gcnew System::Windows::Forms::LinkLabel());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -132,12 +135,24 @@ namespace RestaurantManagementSystem {
 			this->btnCancel->UseVisualStyleBackColor = true;
 			this->btnCancel->Click += gcnew System::EventHandler(this, &LoginForm::btnCancel_Click);
 			// 
+			// llRegister
+			// 
+			this->llRegister->AutoSize = true;
+			this->llRegister->Location = System::Drawing::Point(432, 320);
+			this->llRegister->Name = L"llRegister";
+			this->llRegister->Size = System::Drawing::Size(120, 32);
+			this->llRegister->TabIndex = 7;
+			this->llRegister->TabStop = true;
+			this->llRegister->Text = L"Register";
+			this->llRegister->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &LoginForm::llRegister_LinkClicked);
+			// 
 			// LoginForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(16, 31);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->ClientSize = System::Drawing::Size(564, 328);
+			this->ClientSize = System::Drawing::Size(564, 373);
+			this->Controls->Add(this->llRegister);
 			this->Controls->Add(this->btnCancel);
 			this->Controls->Add(this->btnOK);
 			this->Controls->Add(this->tbPassword);
@@ -148,7 +163,7 @@ namespace RestaurantManagementSystem {
 			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->ForeColor = System::Drawing::Color::DarkBlue;
-			this->Margin = System::Windows::Forms::Padding(6, 6, 6, 6);
+			this->Margin = System::Windows::Forms::Padding(6);
 			this->Name = L"LoginForm";
 			this->Text = L"Login Form";
 			this->Load += gcnew System::EventHandler(this, &LoginForm::LoginForm_Load);
@@ -213,5 +228,10 @@ namespace RestaurantManagementSystem {
 
 	}
 	
+		   public:bool switchToRegister = false;
+private: System::Void llRegister_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
+	this->switchToRegister = true;
+	this->Close();
+}
 };
 }
